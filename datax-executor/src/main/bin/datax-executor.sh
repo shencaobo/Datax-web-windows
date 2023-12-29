@@ -132,7 +132,7 @@ if [ "x${JAVA_HOME}" != "x" ]; then
   EXE_JAVA=${JAVA_HOME}"/bin/java "${JAVA_OPTS}" "${MAIN_CLASS}
   JPS=${JAVA_HOME}/bin/jps
 else
-  EXE_JAVA="java ${JAVA_OPTS} -jar -Dloader.path=lib,templates,static  ${LIB_PATH}/datax-executor-2.1.2.jar "
+  EXE_JAVA="java -Dloader.path=lib,templates,static  ${JAVA_OPTS} -jar  ${LIB_PATH}/datax-executor-2.1.2.jar  --spring.config.location=${SERVICE_CONF_PATH}/  "
   JPS="jps"
 fi
 

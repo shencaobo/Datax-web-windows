@@ -122,7 +122,7 @@ if [ "x${JAVA_HOME}" != "x" ]; then
   EXE_JAVA=${JAVA_HOME}"/bin/java "${JAVA_OPTS}" "${MAIN_CLASS}
   JPS=${JAVA_HOME}/bin/jps
 else
-  EXE_JAVA="java ${JAVA_OPTS} -jar -Dloader.path=lib,templates,static  ${LIB_PATH}/datax-admin-2.1.2.jar "
+  EXE_JAVA="java -Dloader.path=lib,templates,static,conf  ${JAVA_OPTS} -jar ${LIB_PATH}/datax-admin-2.1.2.jar --spring.config.location=${SERVICE_CONF_PATH}/ "
   #EXE_JAVA="java "${JAVA_OPTS}" "${MAIN_CLASS}
   JPS="jps"
 fi
@@ -187,7 +187,7 @@ start_m(){
         LOG INFO "${FRIEND_NAME} has been started in process"
         exit 0
     fi
-    LOG INFO ${EXE_JAVA}
+    LOG INFO "${EXE_JAVA}"
     nohup ${EXE_JAVA} >${SHELL_LOG} 2>&1 &
     LOG INFO "Waiting ${FRIEND_NAME} to start complete ..."
     wait_for_startup 20
